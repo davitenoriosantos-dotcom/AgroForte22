@@ -1,0 +1,294 @@
+# index.html
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agro Forte e Sustentável</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>🌱 Agro Forte e Sustentável</h1>
+    <button id="darkMode">🌙 Modo Noturno</button>
+</header>
+
+<section class="capa">
+    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200"
+         alt="Plantação agrícola">
+    <div class="texto-capa">
+        <h2>O Campo Alimenta o Mundo</h2>
+        <p>Agricultura sustentável para um futuro melhor.</p>
+    </div>
+</section>
+
+<section>
+    <h2>🍎 Alimentação e Qualidade de Vida</h2>
+
+    <p>
+        A agricultura é responsável pela produção dos alimentos consumidos
+        diariamente pela população. Frutas, verduras, legumes e grãos
+        chegam à mesa graças ao trabalho dos produtores rurais.
+    </p>
+
+    <p>
+        A sustentabilidade no campo garante que as futuras gerações
+        continuem tendo acesso a alimentos de qualidade sem prejudicar
+        os recursos naturais.
+    </p>
+</section>
+
+<section>
+    <h2>🚜 Agricultura Sustentável</h2>
+
+    <p>
+        A agricultura sustentável utiliza técnicas modernas para reduzir
+        impactos ambientais, economizar água, preservar o solo e aumentar
+        a produtividade.
+    </p>
+
+    <ul>
+        <li>Uso consciente da água.</li>
+        <li>Preservação das florestas.</li>
+        <li>Rotação de culturas.</li>
+        <li>Redução do desperdício.</li>
+        <li>Uso de tecnologia no campo.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>🌡️ Temperatura Atual</h2>
+    <div id="temperatura">Carregando...</div>
+</section>
+
+<section>
+
+<h2>🧠 Quiz Agro</h2>
+
+<div class="quiz">
+
+<div class="pergunta">
+<p>1. Qual é a principal função da agricultura?</p>
+<button onclick="responder(this,true)">Produzir alimentos</button>
+<button onclick="responder(this,false)">Produzir poluição</button>
+</div>
+
+<div class="pergunta">
+<p>2. O que é agricultura sustentável?</p>
+<button onclick="responder(this,true)">Produzir preservando recursos naturais</button>
+<button onclick="responder(this,false)">Explorar recursos sem limites</button>
+</div>
+
+<div class="pergunta">
+<p>3. Qual recurso deve ser economizado no campo?</p>
+<button onclick="responder(this,true)">Água</button>
+<button onclick="responder(this,false)">Lixo</button>
+</div>
+
+<div class="pergunta">
+<p>4. Qual tecnologia é utilizada no agro moderno?</p>
+<button onclick="responder(this,true)">Drones</button>
+<button onclick="responder(this,false)">Máquinas de escrever</button>
+</div>
+
+<div class="pergunta">
+<p>5. O solo saudável é importante para:</p>
+<button onclick="responder(this,true)">O crescimento das plantas</button>
+<button onclick="responder(this,false)">Diminuir a produção</button>
+</div>
+
+</div>
+
+<h3 id="resultado">Pontuação: 0/5</h3>
+
+</section>
+
+<footer>
+    <p>Projeto Agro Forte e Sustentável 🌿</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+```
+
+# style.css
+
+```css
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#f5fff5;
+color:#333;
+transition:0.4s;
+}
+
+header{
+background:#2e7d32;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+#darkMode{
+margin-top:10px;
+padding:10px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.capa{
+position:relative;
+}
+
+.capa img{
+width:100%;
+height:500px;
+object-fit:cover;
+}
+
+.texto-capa{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(0,0,0,0.5);
+padding:20px;
+border-radius:10px;
+color:white;
+text-align:center;
+}
+
+section{
+max-width:1000px;
+margin:auto;
+padding:30px;
+}
+
+h2{
+color:#2e7d32;
+margin-bottom:15px;
+}
+
+ul{
+margin-left:25px;
+}
+
+#temperatura{
+font-size:30px;
+font-weight:bold;
+color:#2e7d32;
+}
+
+.pergunta{
+margin:20px 0;
+}
+
+.pergunta button{
+display:block;
+margin-top:8px;
+padding:10px;
+border:none;
+border-radius:5px;
+background:#81c784;
+cursor:pointer;
+}
+
+.pergunta button:hover{
+background:#66bb6a;
+}
+
+footer{
+background:#2e7d32;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.dark{
+background:#121212;
+color:white;
+}
+
+.dark header,
+.dark footer{
+background:#000;
+}
+
+.dark h2{
+color:#9be79f;
+}
+
+.dark .pergunta button{
+background:#444;
+color:white;
+}
+```
+
+# script.js
+
+```javascript
+// MODO NOTURNO
+
+const darkMode = document.getElementById("darkMode");
+
+darkMode.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+});
+
+// QUIZ
+
+let pontos = 0;
+
+function responder(botao, correta){
+
+    if(botao.dataset.clicado) return;
+
+    botao.dataset.clicado = true;
+
+    if(correta){
+        pontos++;
+        botao.style.background = "green";
+    }else{
+        botao.style.background = "red";
+    }
+
+    document.getElementById("resultado").innerHTML =
+        `Pontuação: ${pontos}/5`;
+}
+
+// TEMPERATURA EM TEMPO REAL
+
+async function obterTemperatura(){
+
+    try{
+
+        const resposta = await fetch(
+        "https://api.open-meteo.com/v1/forecast?latitude=-24.06&longitude=-53.01&current=temperature_2m"
+        );
+
+        const dados = await resposta.json();
+
+        document.getElementById("temperatura").innerHTML =
+        dados.current.temperature_2m + " °C";
+
+    }catch{
+
+        document.getElementById("temperatura").innerHTML =
+        "Não foi possível carregar.";
+    }
+}
+
+obterTemperatura();
+```
